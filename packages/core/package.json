@@ -1,6 +1,6 @@
 {
   "name": "@ufo-zhu/core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "> TODO: description",
   "author": "jiange <1563610087@qq.com>",
   "homepage": "",
@@ -20,7 +20,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@ufo-zhu/test": "^0.0.2"
+    "@ufo-zhu/test": "^0.0.3"
   },
   "gitHead": "b97271cff737a1a646c2b9b6de3aa51cd512c6b4"
 }
