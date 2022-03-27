@@ -21,5 +21,6 @@
   },
   "dependencies": {
     "@ufo-zhu/test": "^0.0.1"
-  }
+  },
+  "gitHead": "5dd18b09c6b96169d3241afd2e844dd4ecfe15c1"
 }
