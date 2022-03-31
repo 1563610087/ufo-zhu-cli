@@ -1,11 +1,11 @@
 {
-  "name": "@ufo-zhu/test",
-  "version": "0.0.8",
+  "name": "@ufo-zhu/core",
+  "version": "1.0.0",
   "description": "> TODO: description",
   "author": "jiange <1563610087@qq.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/test.js",
+  "main": "lib/core.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -16,8 +16,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "bin": {
+    "hhhs": "bin/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@ufo-zhu/utils": "file:../../utils/utils"
   },
   "gitHead": "5352e31e3a5901ecde1f0b569714951ffc294bcc"
 }

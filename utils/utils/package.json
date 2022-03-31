@@ -1,11 +1,11 @@
 {
-  "name": "@ufo-zhu/core",
-  "version": "0.0.8",
+  "name": "@ufo-zhu/utils",
+  "version": "1.0.0",
   "description": "> TODO: description",
   "author": "jiange <1563610087@qq.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/core.js",
+  "main": "lib/utils.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -18,9 +18,6 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
-  },
-  "dependencies": {
-    "@ufo-zhu/test": "^0.0.3"
   },
   "gitHead": "5352e31e3a5901ecde1f0b569714951ffc294bcc"
 }
