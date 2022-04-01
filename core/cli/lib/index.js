@@ -6,33 +6,67 @@ const pkg = require('../package.json')
 const log = require('@ufo-zhu/log')
 const constants = require('./const')
 const semver = require('semver')
+const path = require('path')
 const colors = require('colors/safe')
 const userHome = require('user-home')
-// const pathExists = require('path-exists')
-import {pathExists} from 'path-exists';
-
+const pathExists = require('path-exists').sync
+let args,config
 function core() {
   try {
     checkVersion()//检测当前版本
     checkNodeVersion()//检测node版本
     checkRoot()//检测root启动
     checkUserHome()//检测用户主目录
-    
+    checkInputArgs()//检测输入参数
+    checkEnv()//检测环境变量
   }catch(err) {
     log.error(err.message)
   }
 
+}
+function checkEnv() {
+  const dotenv=require('dotenv')
+  const dotPathEnv=path.resolve(userHome,'.env')
+  if(pathExists(dotPathEnv)){
+    config=dotenv.config({
+      path:dotPath
+    })
+  }
+  createEnvironment()
+  log.verbose('环境变量',process.env.CLI_HOME_PATH)
+}
+
+function createEnvironment() {
+  const cliConfig={
+    home:userHome
+  }
+  if(process.env.CLI_HOME_PATH){
+    cliConfig.cliHome=path.join(userHome,process.env.CLI_HOME)
+  }else{
+    cliConfig.cliHome=path.join(userHome,constants.DEFAULT_CLI_HOME)
+  }
+  process.env.CLI_HOME_PATH=cliConfig.cliHome
+}
+
+function checkInputArgs(){
+  let minimist=require('minimist')
+  args= minimist(process.argv.slice(2))
+  if(args.debug){
+    process.env.LOG_LEVEL='verbose'
+  }else{
+    process.env.LOG_LEVEL='info'
+  }
+  log.level=process.env.LOG_LEVEL
 }
 
 function checkVersion() {
   log.notice('cli',pkg.version)
 }
 
-function checkUserHome() {
-  console.log(await pathExists('foo.js'));
-  // if(userHome||pathExists(userHome)){
-  //   throw new Error(colors.red(`当前用户主目录不存在`))
-  // }
+async function checkUserHome() {
+  if(!userHome||!pathExists(userHome)){
+    throw new Error(colors.red(`当前用户主目录不存在`))
+  }
 }
 
 function checkNodeVersion() {

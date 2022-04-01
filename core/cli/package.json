@@ -25,11 +25,13 @@
   "dependencies": {
     "@ufo-zhu/log": "file:../../utils/log",
     "colors": "^1.4.0",
-    "path-exists": "^5.0.0",
+    "dotenv": "^16.0.0",
+    "import-local": "^3.1.0",
+    "minimist": "^1.2.6",
+    "path-exists": "^4.0.0",
     "root-check": "^2.0.0",
     "semver": "^7.3.5",
-    "user-home": "^3.0.0",
-    "import-local": "^3.1.0"
+    "user-home": "^3.0.0"
   },
   "gitHead": "5352e31e3a5901ecde1f0b569714951ffc294bcc",
   "devDependencies": {
