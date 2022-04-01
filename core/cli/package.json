@@ -17,13 +17,23 @@
     "access": "public"
   },
   "bin": {
-    "hhhs": "bin/index.js"
+    "ufo": "bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@ufo-zhu/utils": "file:../../utils/utils"
+    "@ufo-zhu/log": "file:../../utils/log",
+    "colors": "^1.4.0",
+    "path-exists": "^5.0.0",
+    "root-check": "^2.0.0",
+    "semver": "^7.3.5",
+    "user-home": "^3.0.0",
+    "import-local": "^3.1.0"
   },
-  "gitHead": "5352e31e3a5901ecde1f0b569714951ffc294bcc"
+  "gitHead": "5352e31e3a5901ecde1f0b569714951ffc294bcc",
+  "devDependencies": {
+    "import-local": "^3.1.0",
+    "npmlog": "^6.0.1"
+  }
 }
