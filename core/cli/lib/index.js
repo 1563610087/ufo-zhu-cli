@@ -11,7 +11,7 @@ const colors = require('colors/safe')
 const userHome = require('user-home')
 const pathExists = require('path-exists').sync
 let args,config
-function core() {
+async function core() {
   try {
     checkVersion()//检测当前版本
     checkNodeVersion()//检测node版本
@@ -19,11 +19,25 @@ function core() {
     checkUserHome()//检测用户主目录
     checkInputArgs()//检测输入参数
     checkEnv()//检测环境变量
+    await checkUpdateGlobal()//检查全局更新
   }catch(err) {
     log.error(err.message)
   }
 
 }
+
+async function checkUpdateGlobal() {
+  const currentVersion=pkg.version
+  const npmName=pkg.name
+  const {getNpmServerInfo}=require('@ufo-zhu/get-npm-info')
+  const lastVersion= await getNpmServerInfo(currentVersion,'semver')
+  if(lastVersion&&semver.gt(lastVersion,currentVersion)){
+    log.warn('更新提示',colors.yellow(
+      `请手动更新${npmName},当前版本：${currentVersion},最新版本${lastVersion}
+更新命令：npm install -g ${npmName}`))
+  }
+}
+
 function checkEnv() {
   const dotenv=require('dotenv')
   const dotPathEnv=path.resolve(userHome,'.env')

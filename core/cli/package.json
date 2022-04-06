@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@ufo-zhu/log": "file:../../utils/log",
+    "@ufo-zhu/get-npm-info": "file:../../utils/get-npm-info",
     "colors": "^1.4.0",
     "dotenv": "^16.0.0",
     "import-local": "^3.1.0",
