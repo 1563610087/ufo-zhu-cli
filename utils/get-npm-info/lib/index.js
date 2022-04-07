@@ -32,7 +32,6 @@ async function getNpmServerInfo(baseVersion,npmName,registry){
     if(newVersion&&newVersion.length>0){
         return newVersion[0]
     }
-    console.log(newVersion)
 }
 
 async function getNpmVersion(npmName,registry) {

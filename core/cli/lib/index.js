@@ -9,21 +9,64 @@ const semver = require('semver')
 const path = require('path')
 const colors = require('colors/safe')
 const userHome = require('user-home')
+const commander=require('commander')
 const pathExists = require('path-exists').sync
+const init = require('@ufo-zhu/init')
+const exec=require('@ufo-zhu/exec')
+
+
+const program=new commander.Command()
 let args,config
 async function core() {
   try {
-    checkVersion()//检测当前版本
-    checkNodeVersion()//检测node版本
-    checkRoot()//检测root启动
-    checkUserHome()//检测用户主目录
-    checkInputArgs()//检测输入参数
-    checkEnv()//检测环境变量
-    await checkUpdateGlobal()//检查全局更新
+    await prepare()//项目准备阶段
+    registryCommander()//命令注册
   }catch(err) {
     log.error(err.message)
   }
 
+}
+
+async function prepare() {
+  checkVersion()//检测当前版本
+  checkNodeVersion()//检测node版本
+  checkRoot()//检测root启动
+  checkUserHome()//检测用户主目录
+  checkEnv()//检测环境变量
+  // await checkUpdateGlobal()//检查全局更新
+}
+
+function registryCommander() {
+  program
+  .name(Object.keys(pkg.bin)[0])
+  .usage('<command> [options]')
+  .version(pkg.version)
+  .option('-d,--debug','是否开启调试模式',false)
+  .option('-tp,--targetPath <targetPath>','是否开启本地调试模式','')
+  .action((str, options) => {
+    if(str.debug){
+      process.env.LOG_LEVEL='verbose'
+    }else{
+      process.env.LOG_LEVEL='info'
+    }
+    log.level=process.env.LOG_LEVEL
+  })
+  //监听未定义的命令功能未实现
+
+  program
+  .command('init [projectName]')
+  .option('-f','--force','是否强制初始化项目')
+  .action(exec)
+
+  program.on('option:targetPath',function(targetPath){
+    process.env.CLI_TARGET_PATH=targetPath
+  })
+  // if(program.args&&program.args.length<1){
+  //   program.outputHelp()
+  //   console.log()
+  // }
+  program.parse(process.argv)
+  
 }
 
 async function checkUpdateGlobal() {
@@ -47,7 +90,6 @@ function checkEnv() {
     })
   }
   createEnvironment()
-  log.verbose('环境变量',process.env.CLI_HOME_PATH)
 }
 
 function createEnvironment() {
@@ -62,16 +104,6 @@ function createEnvironment() {
   process.env.CLI_HOME_PATH=cliConfig.cliHome
 }
 
-function checkInputArgs(){
-  let minimist=require('minimist')
-  args= minimist(process.argv.slice(2))
-  if(args.debug){
-    process.env.LOG_LEVEL='verbose'
-  }else{
-    process.env.LOG_LEVEL='info'
-  }
-  log.level=process.env.LOG_LEVEL
-}
 
 function checkVersion() {
   log.notice('cli',pkg.version)

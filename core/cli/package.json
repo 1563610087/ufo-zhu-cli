@@ -23,12 +23,14 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@ufo-zhu/log": "file:../../utils/log",
     "@ufo-zhu/get-npm-info": "file:../../utils/get-npm-info",
+    "@ufo-zhu/log": "file:../../utils/log",
+    "@ufo-zhu/init": "file:../../commands/init",
+    "@ufo-zhu/exec": "file:../../core/exec",
     "colors": "^1.4.0",
+    "commander": "^6.2.0",
     "dotenv": "^16.0.0",
     "import-local": "^3.1.0",
-    "minimist": "^1.2.6",
     "path-exists": "^4.0.0",
     "root-check": "^2.0.0",
     "semver": "^7.3.5",
