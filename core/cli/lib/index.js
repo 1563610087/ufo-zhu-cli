@@ -43,14 +43,6 @@ function registryCommander() {
   .version(pkg.version)
   .option('-d,--debug','是否开启调试模式',false)
   .option('-tp,--targetPath <targetPath>','是否开启本地调试模式','')
-  .action((str, options) => {
-    if(str.debug){
-      process.env.LOG_LEVEL='verbose'
-    }else{
-      process.env.LOG_LEVEL='info'
-    }
-    log.level=process.env.LOG_LEVEL
-  })
   //监听未定义的命令功能未实现
 
   program
@@ -60,6 +52,13 @@ function registryCommander() {
 
   program.on('option:targetPath',function(targetPath){
     process.env.CLI_TARGET_PATH=targetPath
+  })
+
+  program.on('option:debug',function(debug){
+    if(program.debug){
+      process.env.LOG_LEVEL='verbose'
+    }
+    log.level=process.env.LOG_LEVEL
   })
   // if(program.args&&program.args.length<1){
   //   program.outputHelp()

@@ -1,5 +1,5 @@
 {
-  "name": "@ufo-zhu/package",
+  "name": "@ufo-zhu/formate-path",
   "version": "1.0.0",
   "description": "> TODO: description",
   "author": "jiange <1563610087@qq.com>",
@@ -25,10 +25,5 @@
   },
   "bugs": {
     "url": "https://github.com/1563610087/ufo-zhu-cli/issues"
-  },
-  "dependencies": {
-    "@ufo-zhu/utils": "file:../../utils/utils",
-    "@ufo-zhu/formate-path": "file:../../utils/formate-path",
-    "pkg-dir": "^4.0.1"
   }
 }
