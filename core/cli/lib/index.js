@@ -23,6 +23,9 @@ async function core() {
     registryCommander()//命令注册
   }catch(err) {
     log.error(err.message)
+    if(program.debug){
+      console.log(err)
+    }
   }
 
 }

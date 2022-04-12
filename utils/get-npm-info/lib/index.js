@@ -49,5 +49,6 @@ function getDefaultRegistry(isOrigin=false) {
 module.exports = {
     getNpmInfo,
     getNpmVersion,
-    getNpmServerInfo
+    getNpmServerInfo,
+    getDefaultRegistry
 };

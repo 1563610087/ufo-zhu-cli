@@ -27,8 +27,10 @@
     "url": "https://github.com/1563610087/ufo-zhu-cli/issues"
   },
   "dependencies": {
-    "@ufo-zhu/utils": "file:../../utils/utils",
     "@ufo-zhu/formate-path": "file:../../utils/formate-path",
+    "@ufo-zhu/utils": "file:../../utils/utils",
+    "@ufo-zhu/get-npm-info": "file:../../utils/get-npm-info",
+    "npminstall": "^6.1.0",
     "pkg-dir": "^4.0.1"
   }
 }
