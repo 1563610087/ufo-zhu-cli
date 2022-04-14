@@ -11,7 +11,6 @@ const colors = require('colors/safe')
 const userHome = require('user-home')
 const commander=require('commander')
 const pathExists = require('path-exists').sync
-const init = require('@ufo-zhu/init')
 const exec=require('@ufo-zhu/exec')
 
 
@@ -32,7 +31,6 @@ async function core() {
 
 async function prepare() {
   checkVersion()//检测当前版本
-  checkNodeVersion()//检测node版本
   checkRoot()//检测root启动
   checkUserHome()//检测用户主目录
   checkEnv()//检测环境变量
@@ -117,13 +115,7 @@ async function checkUserHome() {
   }
 }
 
-function checkNodeVersion() {
-  let currentVersion = process.version
-  let lowerVersion = constants.LOWEST_NODE_VERSION
-  if(!semver.gte(currentVersion, lowerVersion)){
-    throw new Error(colors.red(`ufo-cli需要安装v${lowerVersion}以上版本的node.js`))
-  }
-}
+
 
 function checkRoot() {
   //linux系统可用

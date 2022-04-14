@@ -25,5 +25,9 @@
   },
   "bugs": {
     "url": "https://github.com/1563610087/ufo-zhu-cli/issues"
+  },
+  "dependencies": {
+    "@ufo-zhu/command": "file:../../models/command",
+    "@ufo-zhu/log": "file:../../utils/log"
   }
 }

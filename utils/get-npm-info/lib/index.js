@@ -34,6 +34,7 @@ async function getNpmServerInfo(baseVersion,npmName,registry){
     }
 }
 
+//获取包的所有版本
 async function getNpmVersion(npmName,registry) {
     const data=await getNpmInfo(npmName,registry)
     if (data){
@@ -43,6 +44,16 @@ async function getNpmVersion(npmName,registry) {
     }
 }
 
+async function getNpmLatestVersion(npmName,registry) {
+    let version =await getNpmVersion(npmName,registry)
+    if(version){
+        version=version.sort((a,b)=>semver.gt(b,a))
+        return version[0]
+    }
+    return null
+    
+}
+
 function getDefaultRegistry(isOrigin=false) {
     return isOrigin ?'https://registry.npmjs.org':'https://registry.npm.taobao.org'
 }
@@ -50,5 +61,6 @@ module.exports = {
     getNpmInfo,
     getNpmVersion,
     getNpmServerInfo,
-    getDefaultRegistry
+    getDefaultRegistry,
+    getNpmLatestVersion
 };

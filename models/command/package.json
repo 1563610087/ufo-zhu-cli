@@ -1,5 +1,5 @@
 {
-  "name": "@ufo-zhu/package",
+  "name": "@ufo-zhu/command",
   "version": "1.0.0",
   "description": "> TODO: description",
   "author": "jiange <1563610087@qq.com>",
@@ -27,12 +27,8 @@
     "url": "https://github.com/1563610087/ufo-zhu-cli/issues"
   },
   "dependencies": {
-    "@ufo-zhu/formate-path": "file:../../utils/formate-path",
-    "@ufo-zhu/get-npm-info": "file:../../utils/get-npm-info",
-    "@ufo-zhu/utils": "file:../../utils/utils",
-    "fs-extra": "^10.0.1",
-    "npminstall": "^6.1.0",
-    "path-exists": "^4.0.0",
-    "pkg-dir": "^4.0.1"
+    "colors": "^1.4.0",
+    "semver": "^7.3.7",
+    "@ufo-zhu/log": "file:../../utils/log"
   }
 }

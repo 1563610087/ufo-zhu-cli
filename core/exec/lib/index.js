@@ -5,7 +5,8 @@ const log = require('@ufo-zhu/log');
 const path = require('path');
 
 const SETTINGS={
-    'init':"@ufo-zhu/init"
+    // 'init':"@ufo-zhu/init"
+    'init':"uglify-js"
 }
 
 const CACHE_DIR='dependencies'
@@ -15,7 +16,7 @@ async function exec() {
     let pkg=''
     const homePath = process.env.CLI_HOME_PATH
     const cmdObj=arguments[arguments.length-1]
-    const cmdName=cmdObj.name
+    const cmdName=cmdObj._name
     const packageName=SETTINGS[cmdName]
     const packageVersion='latest'
     let storePath=''
@@ -30,8 +31,9 @@ async function exec() {
             packageName,
             packageVersion
         })
-        if(pkg.exists()) {
+        if(await pkg.exists()) {
             //更新package
+            await pkg.updated()
         }else{
             //安装package
             await pkg.install()
@@ -43,9 +45,14 @@ async function exec() {
             packageVersion
         })
     }
-    const rootFilePath=pkg.getRootFilePath()
+    // const rootFilePath=pkg.getRootFilePath()
+    const rootFilePath='F:\\前端\\脚手架搭建\\ufo-cli\\commands\\init\\lib'
     if(rootFilePath){
-        require(rootFilePath).apply(null,arguments)
+        try{
+            require(rootFilePath).call(null,Array.from(arguments))
+        }catch(e){
+            log.error(e.message)
+        }
     }
     
 }
