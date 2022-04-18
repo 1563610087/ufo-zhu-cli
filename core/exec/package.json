@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@ufo-zhu/package": "file:../../models/package",
-    "@ufo-zhu/log": "file:../../utils/log"
+    "@ufo-zhu/log": "file:../../utils/log",
+    "@ufo-zhu/utils": "file:../../utils/utils"
   }
 }

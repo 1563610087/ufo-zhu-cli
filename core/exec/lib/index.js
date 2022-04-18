@@ -3,6 +3,7 @@
 const Package = require('@ufo-zhu/package');
 const log = require('@ufo-zhu/log');
 const path = require('path');
+const { exec: spawn } = require('@ufo-zhu/utils');
 
 const SETTINGS={
     // 'init':"@ufo-zhu/init"
@@ -48,11 +49,39 @@ async function exec() {
     // const rootFilePath=pkg.getRootFilePath()
     const rootFilePath='F:\\前端\\脚手架搭建\\ufo-cli\\commands\\init\\lib'
     if(rootFilePath){
-        try{
-            require(rootFilePath).call(null,Array.from(arguments))
-        }catch(e){
-            log.error(e.message)
-        }
+        try {
+            // 在当前进程中调用
+            require(rootFilePath).call(null, Array.from(arguments));
+            // 在node子进程中调用
+            // const args = Array.from(arguments);
+            // const cmd = args[args.length - 1];
+            // const o = Object.create(null);
+            // Object.keys(cmd).forEach(key => {
+            //   if (cmd.hasOwnProperty(key) &&
+            //     !key.startsWith('_') &&
+            //     key !== 'parent') {
+            //     o[key] = cmd[key];
+            //   }
+            // });
+            
+            // args[args.length - 1] = o;
+            // const code = `require('${rootFilePath}').call(null, ${JSON.stringify(args)})`;
+            // console.log(code)
+            // const child = spawn('node', ['-e', code], {
+            //   cwd: process.cwd(),
+            //   stdio: 'inherit',
+            // });
+            // child.on('error', e => {
+            //   log.error(e.message);
+            //   process.exit(1);
+            // });
+            // child.on('exit', e => {
+            //   log.verbose('命令执行成功:' + e);
+            //   process.exit(e);
+            // });
+          } catch (e) {
+            log.error(e.message);
+          }
     }
     
 }

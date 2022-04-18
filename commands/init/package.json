@@ -28,6 +28,9 @@
   },
   "dependencies": {
     "@ufo-zhu/command": "file:../../models/command",
-    "@ufo-zhu/log": "file:../../utils/log"
+    "@ufo-zhu/log": "file:../../utils/log",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^8.2.2",
+    "semver": "^7.3.7"
   }
 }
